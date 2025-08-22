@@ -5,6 +5,7 @@ import cookie from "react-cookies";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Income.css";
+import Price from "../Price/Price";
 export const Income = (props) => {
   const fetchCUrrency = cookie.load("expense_currency");
   const fetchIncome = cookie.load("incomes");
@@ -13,7 +14,7 @@ export const Income = (props) => {
   const [startDate, setStartDate] = useState();
   const [income, setIncome] = useState(fetchIncome ? fetchIncome : []);
   const [formData, setFormData] = useState();
-
+  
   const deleteIncome = (incomeID) => {
     const newIncome = income.filter((eachIncome) => eachIncome.id != incomeID);
     setIncome(newIncome);
@@ -62,21 +63,17 @@ export const Income = (props) => {
           <span className="text-4xl font-bold">
             {totalIncome === 0 ? (
               <span className="">
-                {" "}
-                {fetchCUrrency ? fetchCUrrency.currency : ""}
-                {" " + totalIncome}
+                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={totalIncome}/>
+            
               </span>
             ) : totalIncome > 0 ? (
               <span className=" text-lime-500">
-                {" "}
-                {fetchCUrrency ? fetchCUrrency.currency : ""}
-                {" " + totalIncome}
+                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={totalIncome}/>
+              
               </span>
             ) : totalIncome < 0 ? (
               <span className=" text-red-500">
-                {" "}
-                {fetchCUrrency ? fetchCUrrency.currency : ""}
-                {" " + totalIncome}
+                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={totalIncome}/>
               </span>
             ) : (
               ""

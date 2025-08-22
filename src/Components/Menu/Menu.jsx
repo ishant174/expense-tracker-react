@@ -75,7 +75,7 @@ export const Menu = (props) => {
             Settings
           </li>
           <li
-            className="rounded-md p-2 flex border-2 border-transparent hover:border-slate-600 transition duration-300 cursor-pointer mt-auto"
+            className="rounded-md p-2 flex border-2 border-transparent hover:border-slate-600 transition duration-300 cursor-pointer mt-auto bg-red-200 hover:bg-red-300"
             onClick={() => handleMenu("login")}
           >
             <span className="mr-4 w-5">

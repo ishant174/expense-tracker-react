@@ -1,6 +1,8 @@
 import React from "react";
-
+import cookie from "react-cookies";
+import Price from "../Price/Price";
 export const Transaction = (props) => {
+  const fetchCUrrency = cookie.load("expense_currency");
   const type = props.type;
   let incometype;
   if (type == "income") {
@@ -26,7 +28,7 @@ export const Transaction = (props) => {
               type == "income" ? "text-lime-500" : "text-red-800"
             } text-2xl font-medium`}
           >
-            Rs.{incometype.amount}
+            <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={incometype.amount}/>
           </div>
           <div>{selectedDate.toLocaleString()}</div>
           <div>{incometype.description}</div>

@@ -63,7 +63,7 @@ export const Setting = () => {
           >
             <option value="USD">USD - US Dollar</option>
             <option value="EUR">EUR - Euro</option>
-            <option value="INR">INR - Indian Rupee</option>
+            <option value="Rs.">INR - Indian Rupee</option>
             <option value="GBP">GBP - British Pound</option>
             <option value="AUD">AUD - Australian Dollar</option>
             <option value="CAD">CAD - Canadian Dollar</option>

@@ -1,7 +1,9 @@
 import React from "react";
 import cookie from "react-cookies";
 import { Card } from "../Card/Card";
+import Price from "../Price/Price";
 export const History = () => {
+  const fetchCUrrency = cookie.load("expense_currency");
   const fetchIncome = cookie.load("incomes");
   const fetchExpense = cookie.load("expenses");
   const recentTransactions =
@@ -38,7 +40,8 @@ export const History = () => {
                         : "text-red-800"
                     } text-2xl font-medium`}
                   >
-                    Rs.{transaction.amount}
+                    <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={transaction.amount}/>
+                   
                   </div>
                   <div>{selectedDate.toLocaleString()}</div>
                   <div>{transaction.description}</div>
