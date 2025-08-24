@@ -24,7 +24,7 @@ export const Dashboard = () => {
       <div className="gap-4 flex">
         <Card className="w-3/5">
           <div className="flex w-full justify-between">
-            <h2 className="text-3xl font-mono">Finantial Graph</h2>
+            <h2 className="text-3xl font-mono">Financial Graph</h2>
             <div className="flex justify-between gap-4">
               <label className="flex items-center">
                 <input
