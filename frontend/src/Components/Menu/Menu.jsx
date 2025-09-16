@@ -24,6 +24,11 @@ export const Menu = (props) => {
       props.menuselected(<Login />);
     }
   };
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    props.menuselected(<Login />);
+    window.location.reload();
+  }
   return (
     <div className="flex flex-col p-4 ">
       {/* Main Menu Items */}
@@ -74,7 +79,15 @@ export const Menu = (props) => {
             </span>
             Settings
           </li>
-          <li
+          {props.loginStatus ?<li
+            className="rounded-md p-2 flex border-2 border-transparent hover:border-slate-600 transition duration-300 cursor-pointer mt-auto bg-red-200 hover:bg-red-300"
+            onClick={() => handleLogout()}
+          >
+            <span className="mr-4 w-5">
+              <img src="/icons/signout.svg" alt="Sign out Icon" />
+            </span>
+            Sign out
+          </li> :<li
             className="rounded-md p-2 flex border-2 border-transparent hover:border-slate-600 transition duration-300 cursor-pointer mt-auto bg-red-200 hover:bg-red-300"
             onClick={() => handleMenu("login")}
           >
@@ -82,7 +95,8 @@ export const Menu = (props) => {
               <img src="/icons/login.svg" alt="Login Icon" />
             </span>
             Login/Signup
-          </li>
+          </li>}
+          
         </ul>
       </div>
     </div>

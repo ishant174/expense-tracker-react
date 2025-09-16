@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.Toastify__toast--success {
+    background: rgb(67 201 78 / 40%) !important;
+}

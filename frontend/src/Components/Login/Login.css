@@ -1,0 +1,7 @@
+.loginsignup-card{
+  background: rgb(255 255 255 / 40%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 30px;
+}
