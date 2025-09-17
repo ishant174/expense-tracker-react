@@ -179,9 +179,9 @@ app.post("/api/createUser", async (req, res) => {
 module.exports = app;
 
 // Run locally if executed directly (e.g., node api/index.js)
-if (require.main === module) {
-  const PORT = 3004;
-  app.listen(PORT, () => {
-    console.log(`Local server running at http://localhost:${PORT}`);
-  });
-}
+// if (require.main === module) {
+//   const PORT = 3004;
+//   app.listen(PORT, () => {
+//     console.log(`Local server running at http://localhost:${PORT}`);
+//   });
+// }
