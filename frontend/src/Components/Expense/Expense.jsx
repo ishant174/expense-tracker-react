@@ -4,6 +4,7 @@ import { Transaction } from "../Transaction/Transaction";
 import cookie from "react-cookies";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import expensesStore from "../../Store/ExpensesStore";
 export const Expense = (props) => {
   const fetchCUrrency = cookie.load("expense_currency");
   const fetchExpense = cookie.load("expenses");
@@ -12,12 +13,16 @@ export const Expense = (props) => {
   const [totalExpense, setTotalExpense] = useState(0);
   const [expense, setExpense] = useState(fetchExpense ? fetchExpense : []);
   const [formData, setFormData] = useState();
+  const setFullTotalExpense = expensesStore(
+      (state) => state.setTotalExpense
+    );
   useEffect(() => {
     let fullExpense = 0;
     expense.map((newExpense) => {
       fullExpense += parseInt(newExpense.amount);
     });
     setTotalExpense(fullExpense);
+    setFullTotalExpense(fullExpense);
     cookie.save("expenses", JSON.stringify(expense));
   }, [expense]);
 

@@ -16,7 +16,8 @@ async function getDb() {
     clientPromise = connectToMongoDB();
   }
   const client = await clientPromise;
-  return client.db('expense-tracker'); // Replace 'expense-tracker' with your DB name
+  console.log(client.databaseName);
+  return client; // Replace 'expense-tracker' with your DB name
 }
 
 // Routes
@@ -26,7 +27,7 @@ app.get("/api/checkDBconnection", async (req, res) => {
     db = await getDb();
     const collection = db.collection('users');
     // Test connection
-    await collection.stats(); // Simple stats call to verify
+    await db.command({ collStats: 'users' });  // Simple stats call to verify
 
     res.send({
       status: 'success',
@@ -179,9 +180,9 @@ app.post("/api/createUser", async (req, res) => {
 module.exports = app;
 
 // Run locally if executed directly (e.g., node api/index.js)
-// if (require.main === module) {
-//   const PORT = 3004;
-//   app.listen(PORT, () => {
-//     console.log(`Local server running at http://localhost:${PORT}`);
-//   });
-// }
+if (require.main === module) {
+  const PORT = 3004;
+  app.listen(PORT, () => {
+    console.log(`Local server running at http://localhost:${PORT}`);
+  });
+}

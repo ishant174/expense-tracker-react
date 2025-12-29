@@ -18,9 +18,11 @@
     "react-cookies": "^0.1.1",
     "react-datepicker": "^7.6.0",
     "react-dom": "^18.3.1",
+    "react-draggable": "^4.5.0",
     "react-redux": "^9.2.0",
     "react-toastify": "^11.0.2",
-    "typewriter-effect": "^2.22.0"
+    "typewriter-effect": "^2.22.0",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

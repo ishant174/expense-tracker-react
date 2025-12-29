@@ -3,14 +3,20 @@ import { Card } from "../Card/Card";
 import { Charts } from "../Charts/Charts";
 import { History } from "../History/History";
 import cookie from "react-cookies";
+import expensesStore from "../../Store/ExpensesStore";
 export const Dashboard = () => {
   const [chartUsed, setChartUsed] = useState("line");
   const handleChartChange = (e) => {
     setChartUsed(e.target.value);
   };
-
-  const fetchIncome = cookie.load("incomes");
+ 
+  const balance = expensesStore(
+    (state) => state.totalIncome - state.totalExpense
+  );
+  
+  const  fetchIncome = cookie.load("incomes");
   const fetchExpense = cookie.load("expenses");
+
   const recentTransactions =
     fetchIncome && fetchExpense ? [...fetchIncome, ...fetchExpense] : [];
 
@@ -18,9 +24,8 @@ export const Dashboard = () => {
     (a, b) => new Date(b.createdTime) - new Date(a.createdTime)
   );
 
-  console.log(sortedData);
+
   return (
-    <div>
       <div className="gap-4 flex">
         <Card className="w-3/5">
           <div className="flex w-full justify-between">
@@ -88,6 +93,5 @@ export const Dashboard = () => {
         </Card>
         <Card className="w-2/5">{<History />}</Card>
       </div>
-    </div>
   );
 };

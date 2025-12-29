@@ -6,15 +6,23 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Income.css";
 import Price from "../Price/Price";
+import expensesStore from "../../Store/ExpensesStore";
+
 export const Income = (props) => {
+
   const fetchCUrrency = cookie.load("expense_currency");
   const fetchIncome = cookie.load("incomes");
   const inputDate = useRef(new Date());
-  const [totalIncome, setTotalIncome] = useState(0);
   const [startDate, setStartDate] = useState();
   const [income, setIncome] = useState(fetchIncome ? fetchIncome : []);
   const [formData, setFormData] = useState();
+  const setFullTotalIncome = expensesStore(
+      (state) => state.setTotalIncome
+    );
   
+  const setTotalIncome = expensesStore(
+      (state) => state.totalIncome
+    );
   const deleteIncome = (incomeID) => {
     const newIncome = income.filter((eachIncome) => eachIncome.id != incomeID);
     setIncome(newIncome);
@@ -51,7 +59,9 @@ export const Income = (props) => {
     income.map((newIncome) => {
       fullIncome += parseInt(newIncome.amount);
     });
-    setTotalIncome(fullIncome);
+
+    
+    setFullTotalIncome(fullIncome);
     cookie.save("incomes", JSON.stringify(income));
   }, [income]);
   return (
@@ -61,19 +71,19 @@ export const Income = (props) => {
         <h2 className="text-3xl text-sky-800">
           Total Income:
           <span className="text-4xl font-bold">
-            {totalIncome === 0 ? (
+            {setTotalIncome === 0 ? (
               <span className="">
-                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={totalIncome}/>
+                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={setTotalIncome}/>
             
               </span>
-            ) : totalIncome > 0 ? (
+            ) : setTotalIncome > 0 ? (
               <span className=" text-lime-500">
-                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={totalIncome}/>
+                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={setTotalIncome}/>
               
               </span>
-            ) : totalIncome < 0 ? (
+            ) : setTotalIncome < 0 ? (
               <span className=" text-red-500">
-                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={totalIncome}/>
+                <Price currency={fetchCUrrency ? fetchCUrrency.currency : ""} amount={setTotalIncome}/>
               </span>
             ) : (
               ""
